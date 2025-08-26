@@ -1,0 +1,119 @@
+===========================
+ _   _    _    ____  _   _ ____   __
+| | | |  / \  / ___|| | | |___ \ / /_
+| |_| | / _ \ \___ \| |_| | __) | '_ \
+|  _  |/ ___ \ ___) |  _  |/ __/| (_) |
+|_| |_/_/   \_\____/|_| |_|_____|\___/
+
+===========================
+
+/*
+ * Hash Table 
+ * Hash Table
+ * Super Cool
+ *
+ * Hash Table
+ * Hash Table
+ * Let's have Fun!
+ */
+
+For this assignment, you will work in a group with your friends and each
+person will implement a different kind of hash table. Pick one per person off
+this list:
+Linear Probing (step size +1, with Power of 2 size and bitmask instead of modulus)
+Linear Chaining (with Linked List or BST in each bucket)
+Quadratic Hashing (step size +1,+4,+9,... works up to 50% load)
+Double Hashing (step size of key%R+1)
+std::unordered_set (yes you can use the standard library hash table)
+
+You must implement four different commands:
+ INSERT - adds a number to the hash table (do nothing if it is a duplicate)
+ SEARCH - tests to see if a number is in the hash table
+ REMOVE - removes a number from the hash table
+ CHANGE - if a number is in the hash table, removes it and replaces it with another number
+
+The program should quit when cin becomes invalid or if the user types in a
+command other than the four above.
+
+Sample input 
+INSERT 7
+SEARCH 7
+INSERT 9
+INSERT 9
+REMOVE 9
+SEARCH 9
+CHANGE 9 1
+CHANGE 7 9
+SEARCH 9
+(Indicate there is no more data if you're doing this in the keyboard by
+hitting ctrl-d)
+
+Sample output
+7 IN TABLE
+9 NOT IN TABLE
+9 IN TABLE
+
+Each partner in your group must pick a different option off the list below:
+1) The first hash table option is fast linear probing. You must enforce a table
+size of a power of 2 (2,4,8,16,32,64,etc.) and then instead of a modulus to
+get the remainder you can use a much faster bitmask instead (x & 0b000111 is
+equivalent to doing x % 8 for example).
+
+2) The second option is with chaining, either with linked lists or binary search trees.
+You can use the standard library <list> class or <set> class to do this, but
+otherwise I want you to write the hash table yourself.
+
+3) The third hash table option is Quadratic Hashing. It's like linear probing
+but the step size goes up by the square each time. The first collision you
+move +1 to the right, the second collision you move +4 to the right, the third
+you move +9 to the right. (Whereas with linear probing you first try +1, then
++2, then +3, then +4...) Do not allow inserts when the load is over 50%.
+
+4) The fourth option is double hashing. The size of a double hash table (N)
+must be a prime number. For double hashing you also pick a value "R" which is
+usually the first prime number smaller than N. So if N = 17, then R = 13. The
+step size for double hashing is (key%R)+1. Otherwise just the same as linear
+probing and quadratic hashing.
+
+5) If you want to be lazy, one person in your group can just use the unordered_set
+class from the standard library and benchmark it.
+
+I have given you an implementation in a "hash table" abstract class that does nothing, that
+you inherit from to implement specific functionality.
+
+After you pass the test cases (5 points) then the next 5 points are from
+benchmarking your implementations intensively and from writing a short
+report with your group with graphs, talking about
+which implementation is faster, and maybe one of the implementations is faster
+at one thing, and another at another, or at different sizes and different
+loads.
+
+Make a hash table around a size of 1 to 10 million (make sure all partners in
+your group pick the same size) and make an input for it that will load it at
+around 70% full. If you want extra credit, test it in all modes at all loads
+(10%, 20%, 30%,...,80%, 90%, 99% full).
+
+A) generator.cc is a sample source code that will generate input files of
+different sizes. You'll need to customize it to support your needs. Right now
+it's set to make a bunch of random numbers, insert them into the hash table,
+delete half of them, and search for all of them.
+
+B) timing_script.sh is a shell script that will run your code in various modes,
+on all inputfiles that you make with a certain name (right now it's set to run
+your code on all files that begin with "inputsearch" (the * means match). So
+when you're ready to test the relative performance of inserting+searching
+(i.e. after you have generated all 10 inputsearch sizes) then run the shell
+script and it will spit out all your timing data for you
+
+You then copy/paste that timing data into Excel, average the five runs
+together, and then graph the results. Use the numbers and the graphs to see
+which version of hash tables is faster, or faster in which circumstances, and
+write this up into a report that you will attach on Canvas.
+
+C) Alternatively, you could do it all programmatically inside main.cc, using
+the <chrono> library to time your code, and using a vector with randomly made
+numbers to do your inserts and searches, then outputting the timings for each
+of the different sizes
+
+You should probably create a project on Github to collaborate easily with your
+partners
