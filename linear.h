@@ -40,8 +40,10 @@ class LinearProbingHash final : public Hash<T,SIZE> { //This class cannot be inh
 		//  looping around to the start if necessary, to find first available bucket
 		//  Either an OPEN bucket or a DELETED bucket will do.
 		//TODO: Make this not infinite loop on a full hash table
-		while (status.at(address) == STATUS::FILLED)
-			address = (address+1)%SIZE; //Move one bucket to the right, looping around
+		for (int i = 0; i < SIZE; i++) {
+			if (status.at(address) == STATUS::FILLED) address = (address+1)%SIZE;
+			else break;
+		}
 		//Ok, we've found an open spot, write the data in and mark it as filled
 		data.at(address) = new_data;
 		status.at(address) = STATUS::FILLED;
@@ -51,36 +53,14 @@ class LinearProbingHash final : public Hash<T,SIZE> { //This class cannot be inh
 	}
 	//YOU:
 	bool search(T old_data) const override {
+		
 		return false;
 	}
 	//YOU:
 	void change(T old_data, T new_data) override {
 		//Remember, only change it if it actually is in the hash table
+		if (search(old_data)) {
+
+		}
 	}
 };
-
-//YOU: Do the same as the above, with with hashing with chaining instead of linear probing
-//You can do chaining either with LLs or with BSTs
-template <class T, size_t SIZE>
-class ChainingHash : public Hash<T,SIZE> {
-	//YOU:
-	public:
-	//YOU:
-	ChainingHash() {
-	}
-	//YOU:
-	void insert(T new_data) override { //Override means it is overriding a virtual function
-	}
-	//YOU:
-	void remove(T old_data) override {
-	}
-	//YOU:
-	bool search(T test_data) const override {
-		return false;
-	}
-	//YOU:
-	void change(T old_data, T new_data) override {
-	}
-};
-
-//YOU: Write a third hashing class here, following the pattern above. You can do it using double hashing, quadratic hashing, or the unordered_set STL class, whatever you like.
