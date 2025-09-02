@@ -37,8 +37,6 @@ class DoubleHash final : public Hash<T,SIZE> { //This class cannot be inherited 
 		return new_data % SIZE;
 	}
 	
-	// finish defining prime 
-	
 	int hash_2(T key) const {
 		return static_cast<int>(prime - (key % prime));
 	}
