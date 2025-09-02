@@ -1,5 +1,4 @@
 #include "/public/read.h"
-#include "hash.h"
 #include "linear.h"
 #include "double.h"
 #include "quadratic.h"
@@ -53,6 +52,13 @@ int main(int argc, char **argv) {
 			else break;
 		}
 	}
+
+	auto x = chrono::high_resolution_clock::now();
+	cout << "Linear Probing tests:" << endl;
+	// run test 1
+	auto y = chrono::high_resolution_clock::now();
+	chrono::duration < double > duration = y - x; 
+	cout << "Test 1 duration: " << duration.count() << endl;
 
 	//delete table; //Don't need this for a unique_ptr!
 	//We could do reset() on it, but we don't need to since it's about to go away...

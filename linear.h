@@ -6,7 +6,6 @@
 //Base class that provides an interface the two subclasses will inherit
 //This is an abstract (pure virtual) class that does nothing
 //But it allows us to avoid copy/pasting code in main because the interface is the same for both hash tables
-template <class T, size_t SIZE>
 
 //YOU: Write three hash tables, one for linear probing, one for chaining, one using any other method you want (Quadratic, Double Hashing, or using the STL unordered_set class are all ok)
 
