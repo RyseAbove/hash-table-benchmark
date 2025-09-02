@@ -3,7 +3,7 @@ CCFLAGS = -Wall -Wextra -Wpedantic -pedantic-errors -Wno-unused-parameter -std=c
 
 all: a.out generator
 
-a.out: main.cc hash.h
+a.out: main.cc hash.h linear.h quadratic.h chaining.h double.h
 	$(CC) $(CCFLAGS) main.cc
 
 generator: generator.cc

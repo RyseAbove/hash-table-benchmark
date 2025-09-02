@@ -1,7 +1,12 @@
 #include "/public/read.h"
 #include "hash.h"
+#include "linear.h"
+#include "double.h"
+#include "quadratic.h"
+#include "chaining.h"
 #include <memory>
 #include <unistd.h>
+#include <chrono>
 using namespace std;
 
 int main(int argc, char **argv) {
@@ -46,7 +51,7 @@ int main(int argc, char **argv) {
 			else if (s == "REMOVE") table->remove(x);
 			else break;
 		}
-	}
+	}`
 
 	//delete table; //Don't need this for a unique_ptr!
 	//We could do reset() on it, but we don't need to since it's about to go away...
