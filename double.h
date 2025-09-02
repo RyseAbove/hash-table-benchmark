@@ -1,4 +1,4 @@
-#include "hash.h"
+#include "linear.h" 
 #include <vector>
 #include <functional>
 #include <boost/multiprecision/cpp_int.hpp>
@@ -23,11 +23,12 @@ cpp_int findPrime(cpp_int SIZE) {
 template <class T, size_t SIZE>
 
 //YOU: Write a third hashing class here, following the pattern above. You can do it using double hashing, quadratic hashing, or the unordered_set STL class, whatever you like.
-class DoubleHash final : public Hash<T,SIZE> { //This class cannot be inherited from
+class DoubleHash final : public Hash<T, SIZE> { //This class cannot be inherited from
 	//This bit of magic makes three constants: STATUS::OPEN, STATUS::FILLED, and STATUS::DELETED
 	//OPEN means the bucket has never held a value in it
 	//FILLED means it currently holds a valid value in it
 	//DELETED means the value in it has been deleted and not replaced yet
+	//size_t size;
 	enum class STATUS : char {OPEN, FILLED, DELETED};
 	std::vector<T> data;
 	std::vector<STATUS> status; //Each element can be STATUS::OPEN, STATUS::FILLED or STATUS::DELETED

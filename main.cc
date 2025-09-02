@@ -1,8 +1,6 @@
 #include "/public/read.h"
 #include "linear.h"
 #include "double.h"
-#include "quadratic.h"
-#include "chaining.h"
 #include <memory>
 #include <unistd.h>
 #include <chrono>
@@ -16,14 +14,14 @@ int main(int argc, char **argv) {
 	if (argc > 1) mode = atoi(argv[1]); //Read mode from command line parameters
 	//If no command line parameter (a.out 0 or a.out 1) is provided, then read from keyboard
 	else mode = read("Choose mode:\n0) Linear\n1) Chaining\n2) Double\n");
-	if (mode < LINEAR or mode > CHAINING or mode > DOUBLE) mode = LINEAR;
+	if (mode < LINEAR or mode > DOUBLE) mode = LINEAR;
 	cerr << "Mode == " << mode << endl;
 
 	//A unique pointer is just a pointer that will delete itself. Nice!
 	unique_ptr<Hash<int,SIZE>> table = nullptr; //Hash is an abstract class, but by C++ magic we can make it implement one of our three options
 	if (mode == LINEAR) table = make_unique<LinearProbingHash<int,SIZE>>();
-	else if (mode == CHAINING) table = make_unique<ChainingHash<int,SIZE>>();
-	else if (mode == DOUBLE) table = new DoubleHash<DoubleHash<int, SIZE>>();
+	//else if (mode == CHAINING) table = make_unique<ChainingHash<int,SIZE>>();
+	else if (mode == DOUBLE) table = make_unique<DoubleHash<int,SIZE>>();
 	//YOU: Add double hashing here, something like this:
 	//else table = new DoubleHash<int,SIZE>;
 
