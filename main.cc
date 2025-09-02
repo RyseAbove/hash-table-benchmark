@@ -16,14 +16,15 @@ int main(int argc, char **argv) {
 	int mode = LINEAR;
 	if (argc > 1) mode = atoi(argv[1]); //Read mode from command line parameters
 	//If no command line parameter (a.out 0 or a.out 1) is provided, then read from keyboard
-	else mode = read("Choose mode:\n0) Linear\n1) Chaining\n");
-	if (mode < LINEAR or mode > CHAINING) mode = LINEAR;
+	else mode = read("Choose mode:\n0) Linear\n1) Chaining\n2) Double\n");
+	if (mode < LINEAR or mode > CHAINING or mode > DOUBLE) mode = LINEAR;
 	cerr << "Mode == " << mode << endl;
 
 	//A unique pointer is just a pointer that will delete itself. Nice!
 	unique_ptr<Hash<int,SIZE>> table = nullptr; //Hash is an abstract class, but by C++ magic we can make it implement one of our three options
 	if (mode == LINEAR) table = make_unique<LinearProbingHash<int,SIZE>>();
 	else if (mode == CHAINING) table = make_unique<ChainingHash<int,SIZE>>();
+	else if (mode == DOUBLE) table = new DoubleHash<DoubleHash<int, SIZE>>();
 	//YOU: Add double hashing here, something like this:
 	//else table = new DoubleHash<int,SIZE>;
 
@@ -51,7 +52,7 @@ int main(int argc, char **argv) {
 			else if (s == "REMOVE") table->remove(x);
 			else break;
 		}
-	}`
+	}
 
 	//delete table; //Don't need this for a unique_ptr!
 	//We could do reset() on it, but we don't need to since it's about to go away...

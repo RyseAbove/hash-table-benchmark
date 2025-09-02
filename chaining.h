@@ -6,15 +6,6 @@
 //This is an abstract (pure virtual) class that does nothing
 //But it allows us to avoid copy/pasting code in main because the interface is the same for both hash tables
 template <class T, size_t SIZE>
-class Hash {
-	public:
-		virtual ~Hash() {}
-		virtual void insert(T new_data) = 0;
-		virtual void remove(T old_data) = 0;
-		virtual bool search(T test_data) const = 0;
-		virtual void change(T old_data, T new_data) = 0;
-};
-
 //YOU: Write three hash tables, one for linear probing, one for chaining, one using any other method you want (Quadratic, Double Hashing, or using the STL unordered_set class are all ok)
 
 template <class T, size_t SIZE>
